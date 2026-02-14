@@ -103,7 +103,7 @@ JOIN avg_tenure at on tc.tenure < at.avg_tenure
 WHERE tc.churn = 'Yes';
 
 -- Churn eden müşterilerin ortalama total_charges değeri nedir?
--- How does the churn rate vary by gender?
+-- What is the average total_charges value for churned customers?
 SELECT
     churn,
     ROUND(AVG(NULLIF(TRIM(total_charges), '')::numeric),2) AS avg_total_charges
@@ -187,6 +187,7 @@ SELECT
     RANK() OVER (PARTITION BY tenure_segment ORDER BY churn_rate DESC) AS risk_rank
 FROM segment_churn
 ORDER BY tenure_segment, risk_rank;
+
 
 
 
